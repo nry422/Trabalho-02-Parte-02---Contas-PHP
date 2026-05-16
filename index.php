@@ -47,6 +47,7 @@ if ($acao == 'inserir') {  //se acao for inserir
 </head>
 <body>
 
+
     <div class="table-responsive">
         <table class="table mt-4" id="tabela-toda"> <!--Aqui ele está com d-none pois some e aparece conforme dados no json-->
             <thead class="table-light">
@@ -77,7 +78,7 @@ if ($acao == 'inserir') {  //se acao for inserir
             ?>
             <tfoot>
                 <tr>
-                 <td colspan="3">Total a Pagar:</td>
+                 <td colspan="3">Total devido:</td>
                 <td><?= number_format($total, 2, ',', '.') ?></td>
                 </tr>
             </tfoot>
