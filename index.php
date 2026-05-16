@@ -27,11 +27,11 @@ if ($acao == 'inserir') {  //se acao for inserir
     header("Location: index.php?status=atualizado");
     exit;
 
-} else if ($acao == 'excluir') { 
+} else if ($acao == 'remover') { 
     $id = $_GET['id']; //recebe o id do contato que vai ser excluido
     unset($contas[$id]); //remove contato
     file_put_contents($dados, json_encode($contas, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-    header("Location: index.php?status=excluido");
+    header("Location: index.php?status=removido");
     exit;
 }
     
@@ -46,6 +46,45 @@ if ($acao == 'inserir') {  //se acao for inserir
     <title>Contas a pagar</title>
 </head>
 <body>
+
+    <div class="table-responsive">
+        <table class="table mt-4" id="tabela-toda"> <!--Aqui ele está com d-none pois some e aparece conforme dados no json-->
+            <thead class="table-light">
+                <tr>
+                    <th scope="col">Código</th>
+                    <th scope="col">Favorecido</th>
+                    <th scope="col">Vencimento</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Ações</th>                    
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($contas as $id => $conta): ?>
+        <tr>
+            <td><?= $conta['codigo'] ?></td>
+            <td><?= $conta['favorecido'] ?></td>
+            <td><?= $conta['vencimento'] ?></td>
+            <td><?= $conta['valor'] ?></td>
+            <td>
+                <a href="?acao=modificar&id=<?= $id ?>">Modificar</a>
+                <a href="?acao=remover&id=<?= $id ?>" onclick="return confirm('Deseja remover?')">Remover</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>                       
+            </tbody>
+            <?php
+            $total = array_sum(array_column($contas, 'valor'));
+            ?>
+            <tfoot>
+                <tr>
+                 <td colspan="3">Total a Pagar:</td>
+                <td><?= number_format($total, 2, ',', '.') ?></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>    
+
+
 
 
 
