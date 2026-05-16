@@ -47,9 +47,42 @@ if ($acao == 'inserir') {  //se acao for inserir
 </head>
 <body>
 
+<div class="container" style="max-width: 900px">
+<h1 class="my-4"> Registro de contas a pagar</h1> 
 
+<form method="post" action="index.php">
+    <input type="hidden" name="acao" value="inserir" id="campo-acao">
+    <input type="hidden" name="id" id="campo-id">           
+        <!--form para inserir e atualizar a tabela-->
+        <div class="card shadow-sm p-3 mb-4">                 
+                    <div class="row g-2 align-items-end">
+                    <div class="col-12 col-md">
+                        <label for="codigo">Código:</label>
+                        <input type="text" name="codigo" id="codigo" class="form-control" required autofocus>
+                    </div> 
+                    <div class="col-12 col-md">
+                        <label for="favorecido">Favorecido:</label>
+                        <input type="text" name="favorecido" id="favorecido" class="form-control" required>
+                    </div>    
+                    <div class="col-12 col-md">
+                        <label for="vencimento">Vencimento:</label>
+                        <input type="text" name="vencimento" id="vencimento" class="form-control" required>
+                    </div>
+                    <div class="col-12 col-md">
+                        <label for="valor">Valor:</label>
+                        <input type="text" name="valor" id="valor" class="form-control" required>
+                    </div>
+                    <div class="col-12 col-md-auto">
+                        <button type="submit" class="btn btn-success">Salvar Conta</button>                                              
+                    </div>                    
+        </div>
+        </div>
+        </form>
+
+
+<!-- Tabela que mostra contas, falta deixar bonitnha com bootstrap!!!!!!!!!!!!!!!!-->
     <div class="table-responsive">
-        <table class="table mt-4" id="tabela-toda"> <!--Aqui ele está com d-none pois some e aparece conforme dados no json-->
+        <table class="table mt-4" id="tabela-toda"> 
             <thead class="table-light">
                 <tr>
                     <th scope="col">Código</th>
