@@ -9,22 +9,24 @@ if ($acao == 'inserir') {  //se acao for inserir
     //validar se não tem outro codigo igual
     $codigoNovo = $_POST['codigo'];
     $codigosExistentes = array_column($contas, 'codigo');
-    if (in_array($codigoNovo, $codigosExistentes)) {
-        header("Location: index.php?status=erro_duplicado");
+
+    //mensagem de erro 
+    if (in_array($codigoDigitado, $codigosExistentes)) {
+       header("Location: index.php?status=erro_duplicado");
+        exit;
+    } else {
+        // sem duplicidade grava normalmente
+        $adicionarId = empty($contas) ? 1 : max(array_keys($contas)) + 1; //se for vazio começa de 1, se tiver id adiciona mais 1
+        $contas[$adicionarId] = [ //id é chave do objeto    
+            "codigo"     => $_POST['codigo'],
+            "favorecido" => $_POST['favorecido'],
+            "vencimento" => $_POST['vencimento'],
+            "valor"      => str_replace(',', '.', $_POST['valor'])
+        ];
+        file_put_contents($dados, json_encode($contas, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        header("Location: index.php?status=sucesso");
         exit;
     }
-
-
-    $adicionarId = empty($contas) ? 1 : max(array_keys($contas)) + 1; //se for vazio começa de 1, se tiver id adiciona mais 1
-    $contas[$adicionarId] = [ //id é chave do objeto    
-        "codigo"     => $_POST['codigo'],
-        "favorecido"     => $_POST['favorecido'],
-        "vencimento" => $_POST['vencimento'],
-        "valor"    => str_replace(',', '.', $_POST['valor'])
-    ];
-    file_put_contents($dados, json_encode($contas, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-    header("Location: index.php?status=sucesso");
-    exit;
 
 } else if ($acao == 'atualizar') { //se acao for atualizar
     //validar se não tem outro codigo igual também
@@ -94,6 +96,11 @@ if ($acao == 'modificar' && isset($_GET['id'])) {
             echo    'Conta foi removida.';
             echo    '<button type="button" class="btn-close" onclick="this.parentElement.classList.add(\'invisible\')"></button>';
             echo'</div>';
+        } elseif ($status === 'erro_duplicado') { //esse se colocou duplicado
+            echo '<div class="alert alert-warning alert-dismissible fade show">';
+            echo    'Erro: Este código já existe, insira um código diferente.';
+            echo    '<button type="button" class="btn-close" onclick="this.parentElement.classList.add(\'invisible\')"></button>';
+            echo '</div>';
         } else {  // alerta nvisivel para tela não ficar mexendo, com a classe 'invisible'
             echo '<div class="alert alert-dismissible invisible">';
             echo    '&nbsp;'; 
