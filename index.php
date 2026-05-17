@@ -136,7 +136,7 @@ if ($acao == 'modificar' && isset($_GET['id'])) {
                         <tr>
                             <td><?= $conta['codigo'] ?></td>
                             <td><?= $conta['favorecido'] ?></td>
-                            <td><?= $conta['vencimento'] ?></td>
+                            <td><?= date('d/m/Y', strtotime($conta['vencimento'])) ?></td>
                             <td>R$ <?= number_format($conta['valor'], 2, ',', '.') //formatação do valor para exibição no modo usado no brasil ?></td>
                             <td>
                                 <a href="?acao=modificar&id=<?= $id ?>" class="btn btn-sm btn-outline-warning" title="Modificar">
