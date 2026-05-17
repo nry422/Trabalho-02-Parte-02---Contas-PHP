@@ -65,20 +65,19 @@ if ($acao == 'modificar' && isset($_GET['id'])) {
         if ($status === 'sucesso') { 
             echo '<div class="alert alert-success alert-dismissible fade show">';
             echo    'Conta foi registrada!!';
-            echo    '<button type="button" class="btn-close" data-bs-dismiss="alert"></button>';
+            echo    '<button type="button" class="btn-close" onclick="this.parentElement.classList.add(\'invisible\')"></button>';
             echo'</div>';
         } elseif ($status === 'atualizado') { 
             echo'<div class="alert alert-info alert-dismissible fade show">';
             echo    'Conta foi atualizada!!!';
-            echo    '<button type="button" class="btn-close" data-bs-dismiss="alert"></button>';
+            echo    '<button type="button" class="btn-close" onclick="this.parentElement.classList.add(\'invisible\')"></button>';
             echo'</div>';
         } elseif ($status === 'removido') { 
             echo'<div class="alert alert-warning alert-dismissible fade show">';
             echo    'Conta foi removida.';
-            echo    '<button type="button" class="btn-close" data-bs-dismiss="alert"></button>';
+            echo    '<button type="button" class="btn-close" onclick="this.parentElement.classList.add(\'invisible\')"></button>';
             echo'</div>';
-        } else {
-            // alerta nvisivel para tela não ficar mexendo, com a classe 'invisible'
+        } else {  // alerta nvisivel para tela não ficar mexendo, com a classe 'invisible'
             echo '<div class="alert alert-dismissible invisible">';
             echo    '&nbsp;'; 
             echo    '<button type="button" class="btn-close"></button>';
