@@ -35,17 +35,14 @@ if ($acao == 'inserir') {  //se acao for inserir
     exit;
 }
 
-$contaModificar = null;
+$contaModificar = null; //garante a variavel vazia enquanto não está sendo usada
 if ($acao == 'modificar' && isset($_GET['id'])) {
     $id = $_GET['id'];
     if (isset($contas[$id])){
         $contaModificar = $contas[$id];
         $contaModificar['_id'] = $id;
     }
-}
-
-    
-    
+}  
     ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -59,29 +56,29 @@ if ($acao == 'modificar' && isset($_GET['id'])) {
 
 <div class="container mt-4" style="max-width: 1200px">
 <h1 class="my-4 text-center"> Registro de contas a pagar</h1>
-
-<?php $status = $_GET['status'] ?? ''; ?>
-
-<?php if ($status === 'sucesso') { ?>
-    <div class="alert alert-success alert-dismissible fade show">
-        Conta foi registrada!!
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-<?php } elseif ($status === 'atualizado') { ?>
-    <div class="alert alert-info alert-dismissible fade show">
-        Conta foi atualizada!!!
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-<?php } elseif ($status === 'removido') { ?>
-    <div class="alert alert-warning alert-dismissible fade show">
-        Conta foi removida.
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-<?php } ?>
+<!-- Mostra o alerta de sucesso da operacao abaixo do titulo, pode ser clicado para fechar, usei echo para comprar com sempre envolver o php em < ? -->
+<?php $status = $_GET['status'] ?? ''; 
+if ($status === 'sucesso') { 
+echo '<div class="alert alert-success alert-dismissible fade show">';
+echo    'Conta foi registrada!!';
+echo    '<button type="button" class="btn-close" data-bs-dismiss="alert"></button>';
+echo'</div>';
+} elseif ($status === 'atualizado') { 
+echo'<div class="alert alert-info alert-dismissible fade show">';
+echo    'Conta foi atualizada!!!';
+echo    '<button type="button" class="btn-close" data-bs-dismiss="alert"></button>';
+echo'</div>';
+} elseif ($status === 'removido') { 
+echo'<div class="alert alert-warning alert-dismissible fade show">';
+echo    'Conta foi removida.';
+echo    '<button type="button" class="btn-close" data-bs-dismiss="alert"></button>';
+echo'</div>';
+}
+ ?>
 
     <div class="row">
     <div class="col-lg-4 mb-4">
-<!-- Formulário 4/12 -->
+<!-- Formulário 4 de 12 grids -->
 <form method="post" action="index.php">
     <input type="hidden" name="acao" value="<?= $contaModificar ? 'atualizar' : 'inserir' ?>">
     <input type="hidden" name="id" value="<?= $contaModificar['_id'] ?? '' ?>">           
@@ -117,7 +114,7 @@ if ($acao == 'modificar' && isset($_GET['id'])) {
         </div>
 
 
- <!-- tabela 8/12 -->
+ <!-- tabela 8 de 12 grids -->
     <div class="col-lg-8">
                 <div class="table-responsive">
                     <table class="table table-hover" id="tabela-toda"> 
@@ -131,26 +128,26 @@ if ($acao == 'modificar' && isset($_GET['id'])) {
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($contas as $id => $conta){ ?>
+                <?php foreach ($contas as $id => $conta){ // vai preencher as linhas com info usando loop ?>
         <tr>
             <td><?= $conta['codigo'] ?></td>
             <td><?= $conta['favorecido'] ?></td>
             <td><?= $conta['vencimento'] ?></td>
-            <td>R$ <?= number_format($conta['valor'], 2, ',', '.') ?></td>
+            <td>R$ <?= number_format($conta['valor'], 2, ',', '.') //formatação do valor para exibição no modo usado no brasil ?></td>
             <td>
                 <a href="?acao=modificar&id=<?= $id ?>">Modificar</a>
-                <a href="?acao=remover&id=<?= $id ?>" onclick="return confirm('Deseja remover?')">Remover</a>
+                <a href="?acao=remover&id=<?= $id ?>" onclick="return confirm('Deseja remover?')">Remover</a> <!-- o return confirm é JS-->
             </td>
         </tr>
     <?php } ?>                       
             </tbody>
             <?php
-            $total = array_sum(array_column($contas, 'valor'));
+            $total = array_sum(array_column($contas, 'valor')); //usamos os valores da coluna valor com sum para achar o total
             ?>
             <tfoot>
                 <tr>
                  <td colspan="3">Total devido:</td>
-                <td><?= number_format($total, 2, ',', '.') ?></td>
+                <td>R$ <?= number_format($total, 2, ',', '.') ?></td>
                 </tr>
             </tfoot>
         </table>
