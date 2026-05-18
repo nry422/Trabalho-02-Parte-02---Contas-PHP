@@ -1,14 +1,62 @@
 {
+    "1": {
+        "codigo": "101",
+        "favorecido": "CELESC",
+        "vencimento": "2026-05-20",
+        "valor": "350.00"
+    },
+    "2": {
+        "codigo": "102",
+        "favorecido": "SAMAE",
+        "vencimento": "2026-05-22",
+        "valor": "185.50"
+    },
+    "3": {
+        "codigo": "103",
+        "favorecido": "Claro Internet",
+        "vencimento": "2026-06-01",
+        "valor": "129.90"
+    },
     "4": {
         "codigo": "104",
-        "favorecido": "Conta 04",
-        "vencimento": "2026-06-12",
-        "valor": "100.00"
+        "favorecido": "Condomínio Residencial",
+        "vencimento": "2026-05-10",
+        "valor": "620.00"
     },
     "5": {
         "codigo": "105",
-        "favorecido": "eu mesmo",
-        "vencimento": "2026-05-18",
-        "valor": "202"
+        "favorecido": "Seguro Carro",
+        "vencimento": "2026-06-15",
+        "valor": "210.75"
+    },
+    "6": {
+        "codigo": "106",
+        "favorecido": "Academia Fit",
+        "vencimento": "2026-05-28",
+        "valor": "99.90"
+    },
+    "7": {
+        "codigo": "107",
+        "favorecido": "Supermercado",
+        "vencimento": "2026-06-05",
+        "valor": "487.30"
+    },
+    "8": {
+        "codigo": "108",
+        "favorecido": "Farmácia",
+        "vencimento": "2026-05-30",
+        "valor": "143.20"
+    },
+    "9": {
+        "codigo": "109",
+        "favorecido": "Netflix",
+        "vencimento": "2026-06-10",
+        "valor": "55.90"
+    },
+    "10": {
+        "codigo": "110",
+        "favorecido": "Spotify",
+        "vencimento": "2026-06-10",
+        "valor": "21.90"
     }
 }
