@@ -77,12 +77,7 @@ if ($acao == 'modificar' && isset($_GET['id'])) {
             echo'<div class="alert alert-warning alert-dismissible fade show">';
             echo    'Conta foi removida.';
             echo    '<button type="button" class="btn-close" onclick="this.parentElement.classList.add(\'invisible\')"></button>';
-            echo'</div>';
-        //} elseif ($status === 'erro_duplicado') { //esse se colocou duplicado
-        //    echo '<div class="alert alert-warning alert-dismissible fade show">';
-        //    echo    'Erro: Este código já existe, insira um código diferente.';
-        //    echo    '<button type="button" class="btn-close" onclick="this.parentElement.classList.add(\'invisible\')"></button>';
-        //    echo '</div>';
+            echo'</div>';        
         } else {  // alerta nvisivel para tela não ficar mexendo, com a classe 'invisible'
             echo '<div class="alert alert-dismissible invisible">';
             echo    '&nbsp;'; 
